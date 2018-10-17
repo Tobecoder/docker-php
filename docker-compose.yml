@@ -1,0 +1,28 @@
+nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    links:
+      - "php"
+    volumes:
+      - ~/docker-php/opt:/opt
+      - ~/docker-php/opt/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ~/docker-php/opt/nginx/vhost:/etc/nginx/conf.d
+
+php:
+    image: php:7.2-fpm
+    ports:
+      - "9000:9000"
+    links:
+      - "mysql"
+    volumes:
+      - ~/docker-php/opt:/opt
+
+mysql:
+    build: ./mysql
+    ports:
+      - "3308:3308"
+    volumes:
+      - ~/docker-php/opt/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
