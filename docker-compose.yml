@@ -10,7 +10,7 @@ nginx:
       - ~/docker-php/opt/nginx/vhost:/etc/nginx/conf.d
 
 php:
-    image: php:7.2-fpm
+    build: ./php
     ports:
       - "9000:9000"
     links:
