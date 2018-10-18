@@ -4,6 +4,8 @@ ENV TZ=Asia/Shanghai
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# php-ext
+
 RUN apt-get update && apt-get install -y \
 
 git \
@@ -28,3 +30,22 @@ libpng-dev \
 
 && rm -r /var/lib/apt/lists/*
 
+# redis
+
+COPY ./redis-4.1.1.tgz /home/redis-4.1.1.tgz
+
+RUN pecl install /home/redis-4.1.1.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+
+# composer
+
+ENV COMPOSER_HOME /root/composer
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+ENV PATH $COMPOSER_HOME/vendor/bin:$PATH
+
+RUN rm -f /home/redis-4.1.1.tgz
+
+# Write Permission
+
+RUN usermod -u 1000 www-data
