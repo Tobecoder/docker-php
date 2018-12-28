@@ -1,4 +1,4 @@
-FROM nginx:1.10
+FROM nginx:1.10.3
 
 ADD mkdir.sh /opt/
 
