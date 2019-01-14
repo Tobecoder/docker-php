@@ -17,6 +17,7 @@ libpng-dev \
 && docker-php-ext-install pdo_mysql \
 && docker-php-ext-install opcache \
 && docker-php-ext-install mysqli \
+&& docker-php-ext-install bcmath \
 && rm -r /var/lib/apt/lists/*
 
 # redis
