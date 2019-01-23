@@ -26,6 +26,10 @@ COPY ./redis-4.1.1.tgz /home/redis-4.1.1.tgz
 
 RUN pecl install /home/redis-4.1.1.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
+# xdebug
+
+RUN pecl install xdebug && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
+
 # composer
 
 ENV COMPOSER_HOME /root/composer
