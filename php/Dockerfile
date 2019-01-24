@@ -8,6 +8,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y \
 git \
+wget \
 libfreetype6-dev \
 libjpeg62-turbo-dev \
 libpng-dev \
