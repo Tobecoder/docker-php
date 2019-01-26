@@ -4,6 +4,9 @@ ENV TZ=Asia/Shanghai
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# source
+# RUN rm -rf /etc/apt/sources.list
+# ADD sources.list /etc/apt/
 # php-ext
 
 RUN apt-get update && apt-get install -y \
@@ -28,8 +31,7 @@ COPY ./redis-4.1.1.tgz /home/redis-4.1.1.tgz
 RUN pecl install /home/redis-4.1.1.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # xdebug
-
-RUN pecl install xdebug && touch /usr/local/etc/php/conf.d/xdebug.ini && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 # composer
 
