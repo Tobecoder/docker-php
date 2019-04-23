@@ -21,6 +21,8 @@ services:
           - "mysql"
         volumes:
           - ./opt/code:/opt/code
+          - ./opt/php/php-fpm.d:/usr/local/etc/php-fpm.d
+          - ./opt/php/conf.d:/usr/local/etc/php/conf.d
 
     mysql:
         image: mysql:5.7
