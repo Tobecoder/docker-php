@@ -8,9 +8,9 @@ for p in $p1 $p2 $p3 $p4
 do
     if [ ! -d "$p" ]
     then
-        mkdir "$p"
+        mkdir -p "$p"
     fi
 done
 
-exec `chown -R www-data:www-data /nas/opt/code /nas/opt/log`
+exec `chown -R www-data:www-data /var/www/html/log /var/www/html/code`
 
