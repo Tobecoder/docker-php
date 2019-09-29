@@ -23,6 +23,7 @@ services:
           - ./opt/code:/opt/code
           - ./opt/php/php-fpm.d:/usr/local/etc/php-fpm.d
           - ./opt/php/conf.d:/usr/local/etc/php/conf.d
+          - ./opt/php/supervisor:/etc/supervisor
 
     mysql:
         image: mysql:5.7
