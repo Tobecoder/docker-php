@@ -29,14 +29,12 @@ supervisor \
 && docker-php-ext-install pcntl \
 && docker-php-ext-install mysqli \
 && docker-php-ext-install sysvsem \
-&& docker-php-ext-install shmop \
-&& rm -r /var/lib/apt/lists/*
+&& docker-php-ext-install shmop
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
 libxml2-dev \
 && docker-php-ext-install soap \
-&& docker-php-ext-install xmlrpc \
-&& rm -r /var/lib/apt/lists/*
+&& docker-php-ext-install xmlrpc
 
 # libevent
 #RUN apt-get update && \
@@ -46,15 +44,12 @@ libxml2-dev \
 #&& rm -r /var/lib/apt/lists/*
 
 # intl
-RUN apt-get update && \
-docker-php-ext-install intl && docker-php-ext-enable intl \
-&& rm -r /var/lib/apt/lists/*
+RUN docker-php-ext-install intl && docker-php-ext-enable intl
 
 # memcached
-RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev \
+RUN apt-get install -y libmemcached-dev zlib1g-dev \
 && pecl install memcached \
-&& docker-php-ext-enable memcached \
-&& rm -r /var/lib/apt/lists/*
+&& docker-php-ext-enable memcached
 
 # redis && xdebug
 RUN pecl install redis \
