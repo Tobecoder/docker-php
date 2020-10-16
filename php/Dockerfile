@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4-fpm
 
 ENV TZ=Asia/Shanghai
 
@@ -16,7 +16,9 @@ libfreetype6-dev \
 libjpeg62-turbo-dev \
 libpng-dev \
 supervisor \
-&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+zlib1g-dev \
+libzip-dev \
+&& docker-php-ext-configure gd \
 && docker-php-ext-install -j$(nproc) gd \
 && docker-php-ext-install zip \
 && docker-php-ext-install pdo_mysql \
