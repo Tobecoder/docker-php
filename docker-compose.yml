@@ -25,6 +25,19 @@ services:
           - ./opt/php/conf.d:/usr/local/etc/php/conf.d
           - ./opt/php/supervisor:/etc/supervisor
           - ./opt/php/deploy:/root/deploy
+          
+    php-websocket:
+        build: ./php
+        ports:
+          - "9502:9502"
+        links:
+          - "mysql"
+        volumes:
+          - ./opt/code:/opt/code
+          - ./opt/php-websocket/php-fpm.d:/usr/local/etc/php-fpm.d
+          - ./opt/php-websocket/conf.d:/usr/local/etc/php/conf.d
+          - ./opt/php-websocket/supervisor:/etc/supervisor
+          - ./opt/php-websocket/deploy:/root/deploy
 
     mysql:
         image: mysql:5.7
